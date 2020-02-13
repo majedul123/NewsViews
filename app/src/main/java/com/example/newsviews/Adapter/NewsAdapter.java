@@ -10,22 +10,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.newsviews.R;
+import com.squareup.picasso.Picasso;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.text.DecimalFormat;
-
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder>{
 
@@ -55,12 +44,19 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder>{
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tv_driver_name, tv_distence, tv_driver_impresion;
-        LinearLayout list_of_driver, botombackground;
-        ImageView map_image;
+        TextView tv_title,tv_author,tv_description,tv_url,tv_published_date;
+
+        ImageView news_image;
 
         public MyViewHolder(View view) {
             super(view);
+
+         tv_title=view.findViewById(R.id.title);
+         tv_author=view.findViewById(R.id.author);
+         tv_description=view.findViewById(R.id.description);
+         tv_url=view.findViewById(R.id.url);
+         tv_published_date=view.findViewById(R.id.published_time);
+         news_image=view.findViewById(R.id.image);
 
 
 
@@ -74,12 +70,21 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder>{
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.news_list, parent, false);
 
+
+
         return new NewsAdapter.MyViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(final NewsAdapter.MyViewHolder holder, final int position) {
 
+
+        holder.tv_title.setText(title[position]);
+        holder.tv_author.setText(author[position]);
+        //holder.tv_description.setText(description[position]);
+        holder.tv_published_date.setText(published_date[position]);
+        holder.tv_url.setText(url[position]);
+        Picasso.with(context).load(url_to_image[position]).into(holder.news_image);
 
 //        if (position % 3 == 0)
 //            holder.botombackground.setBackgroundResource(R.color.active_color);

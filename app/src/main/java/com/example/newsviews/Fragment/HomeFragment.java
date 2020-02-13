@@ -70,38 +70,33 @@ public class HomeFragment extends Fragment {
                         int length = jo2.length();
                         Toast.makeText(getActivity(), "Length =" + length, Toast.LENGTH_SHORT).show();
 
-                        author=new String[length];
-                        title=new String[length];
-                        description=new String[length];
-                        url=new String[length];
-                        url_to_image=new String[length];
-                        published_date=new String[length];
-                        content=new String[length];
+                        author = new String[length];
+                        title = new String[length];
+                        description = new String[length];
+                        url = new String[length];
+                        url_to_image = new String[length];
+                        published_date = new String[length];
+                        content = new String[length];
                         for (int i = 0; i < jo2.length(); i++) {
                             JSONObject rec = jo2.getJSONObject(i);
 
 
+                            author[i] = rec.getString("author");
+                            title[i] = rec.getString("title");
+                            description[i] = rec.getString("description");
+                            url[i] = rec.getString("url");
+                            url_to_image[i] = rec.getString("urlToImage");
+                            published_date[i] = rec.getString("publishedAt");
+                            content[i] = rec.getString("content");
 
-
-                             author[i] = rec.getString("author");
-                             title[i] = rec.getString("title");
-                             description[i] = rec.getString("description");
-                             url[i] = rec.getString("url");
-                             url_to_image[i] = rec.getString("urlToImage");
-                             published_date[i] = rec.getString("publishedAt");
-                             content[i] = rec.getString("content");
-
-                            String ar = rec.getString("content");
-                            Toast.makeText(getActivity(), " author :" + ar, Toast.LENGTH_SHORT).show();
 
                         }
 
 
                         NewsAdapter newsAdapter = new NewsAdapter(getActivity(), author, title, description, url, url_to_image, published_date, content);
-                        //NewsAdapter newsAdapter = new NewsAdapter(getActivity(), content);
 
 
-                        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 1);
+                        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
                         recyclerView.setLayoutManager(mLayoutManager);
                         recyclerView.setItemAnimator(new DefaultItemAnimator());
                         recyclerView.setAdapter(newsAdapter);
