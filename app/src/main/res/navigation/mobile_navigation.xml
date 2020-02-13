@@ -7,37 +7,21 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.newsviews.Activity.ui.home.HomeFragment"
+        android:name="com.example.newsviews.Fragment.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.example.newsviews.Activity.ui.gallery.GalleryFragment"
+        android:name="com.example.newsviews.Fragment.AboutFragment"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_about" />
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="com.example.newsviews.Activity.ui.slideshow.SlideshowFragment"
+        android:name="com.example.newsviews.Fragment.ExitFragment"
         android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_exit" />
 
-    <fragment
-        android:id="@+id/nav_tools"
-        android:name="com.example.newsviews.Activity.ui.tools.ToolsFragment"
-        android:label="@string/menu_tools"
-        tools:layout="@layout/fragment_tools" />
 
-    <fragment
-        android:id="@+id/nav_share"
-        android:name="com.example.newsviews.Activity.ui.share.ShareFragment"
-        android:label="@string/menu_share"
-        tools:layout="@layout/fragment_share" />
-
-    <fragment
-        android:id="@+id/nav_send"
-        android:name="com.example.newsviews.Activity.ui.send.SendFragment"
-        android:label="@string/menu_send"
-        tools:layout="@layout/fragment_send" />
 </navigation>

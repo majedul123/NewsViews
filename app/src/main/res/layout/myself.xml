@@ -2,14 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0D53D5"
+    android:background="@drawable/spalash_color"
     android:orientation="vertical">
 
 
     <TextView
+        android:textColor="#FFF"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-       android:layout_marginTop="40dp"
+       android:layout_marginTop="100dp"
         android:text="MD. MAJEDUL ISLAM"
         android:textAlignment="center"
         android:textSize="30dp"
@@ -20,6 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
+        android:textColor="#FFF"
         android:text="B.Sc(Engg.) in ICT from MBSTU"
         android:textAlignment="center"
         android:textSize="30dp"
@@ -30,6 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
+        android:textColor="#FFF"
         android:text="Now working as a android developer in sticker driver limited "
         android:textAlignment="center"
         android:textSize="30dp"

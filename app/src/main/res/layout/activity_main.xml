@@ -24,21 +24,9 @@
         app:arc_cropDirection="cropInside"
         app:arc_width="96dp"
         app:itemBackground="@android:color/white"
-        app:headerLayout="@layout/nav_header_main2"
-        app:menu="@menu/activity_main2_drawer"/>
+        app:headerLayout="@layout/nav_header_main"
+        app:menu="@menu/activity_main_drawer"/>
 
-    <com.rom4ek.arcnavigationview.ArcNavigationView
-        android:id="@+id/nav_view_right"
-        android:layoutDirection="rtl"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="end"
-        android:background="@android:color/white"
-        android:fitsSystemWindows="true"
-        app:arc_cropDirection="cropOutside"
-        app:arc_width="72dp"
-        app:itemBackground="@android:color/white"
-        app:headerLayout="@layout/nav_header_main2"
-        app:menu="@menu/activity_main2_drawer"/>
+
 
 </androidx.drawerlayout.widget.DrawerLayout>
