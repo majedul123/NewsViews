@@ -13,14 +13,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.NumberActivity"></activity>
+        <activity
+            android:name=".Activity.NumberActivity"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".Activity.MainActivity"
             android:label="@string/title_activity_main"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activity.Login" />
-        <activity android:name=".Activity.SecondarySpalashScreen" />
-        <activity android:name=".Activity.SpalashScreen">
+        <activity
+            android:name=".Activity.Login"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.SecondarySpalashScreen"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.SpalashScreen"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
