@@ -99,11 +99,8 @@ public class HomeFragment extends Fragment {
         mApiserive = UtilsApi.getAPIService();
 
 
-        // recyclerView = view.findViewById(R.id.recyclerview);
-        //    webView = view.findViewById(R.id.webview);
-
         Date c = Calendar.getInstance().getTime();
-        System.out.println("Current time => " + c);
+
 
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         String currentdate = df.format(c);
@@ -215,30 +212,7 @@ public class HomeFragment extends Fragment {
                                     }
                                 });
 
-                             /*  AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
-                                LayoutInflater inflater = getActivity().getLayoutInflater();
-                                final View dialogView = inflater.inflate(R.layout.webshow, null);
-                                WebView wv = (WebView) dialogView.findViewById(R.id.web);
-                                wv.loadUrl(url[position]);
-                                wv.setWebViewClient(new WebViewClient() {
-                                    @Override
-                                    public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                                        view.loadUrl(url);
 
-                                        return true;
-                                    }
-                                });
-                                ImageButton imageButton=dialogView.findViewById(R.id.imagebutton);
-                                dialogBuilder.setView(dialogView);
-                                final Dialog markerPopUpDialog = dialogBuilder.create();
-                                markerPopUpDialog.show();
-                                imageButton.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        markerPopUpDialog.dismiss();
-                                    }
-                                });
-                                  */
                                 Toast.makeText(getContext(), "posotion \n" + position, Toast.LENGTH_SHORT).show();
                             }
 

@@ -1,6 +1,7 @@
 package com.example.newsviews.Adapter;
 
 import android.content.Context;
+import android.net.ParseException;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -15,6 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.newsviews.R;
 import com.squareup.picasso.Picasso;
+
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 import butterknife.BindView;
 
@@ -101,11 +105,29 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
 
         holder.tv_title.setText(title[position]);
         holder.tv_author.setText(author[position]);
-        //holder.tv_description.setText(description[position]);
-        holder.tv_published_date.setText(published_date[position]);
+        holder.tv_description.setText(description[position]);
         holder.tv_url.setText(url[position]);
         Picasso.with(context).load(url_to_image[position]).into(holder.news_image);
 
+        SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+
+        SimpleDateFormat output = new SimpleDateFormat("dd-MM-yyyy");
+
+        java.util.Date s = null;
+        Date d = null;
+        try {
+            try {
+                s = input.parse(published_date[position]);
+
+            } catch (java.text.ParseException e) {
+                e.printStackTrace();
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String publish = output.format(s);
+
+        holder.tv_published_date.setText("Published At :"+publish);
 
     }
 

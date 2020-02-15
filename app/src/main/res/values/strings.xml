@@ -31,6 +31,7 @@
     <string name="degree">B.Sc(Engg.) in ICT from MBSTU</string>
     <string name="name">I AM MD. MAJEDUL ISLAM</string>
     <string name="salam">Assalamualikum</string>
+    <string name="newsviews_description">NewsViews basically  fetch data from the web and show it to the end user</string>
 
 
 </resources>

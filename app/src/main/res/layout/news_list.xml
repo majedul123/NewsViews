@@ -54,6 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Description"
+            android:visibility="gone"
             android:id="@+id/description"
             android:textSize="12dp"
             android:textStyle="bold" />
@@ -63,6 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="url"
+            android:visibility="gone"
             android:id="@+id/url"
             android:textSize="12dp"
             android:textStyle="bold" />
@@ -74,6 +76,7 @@
             android:textSize="12dp"
             android:textStyle="bold"
             android:id="@+id/published_time"
+            android:layout_marginBottom="@dimen/dots_margin_bottom"
             />
 
         </LinearLayout>

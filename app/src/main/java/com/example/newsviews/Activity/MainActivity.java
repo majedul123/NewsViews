@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -27,6 +28,7 @@ import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnTouch;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,10 +42,12 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.search)
     SearchView searchView;
     @BindView(R.id.ok)
-    Button ok;
-    @OnClick(R.id.ok) void okclick() {
-        String quer=  searchView.getQuery().toString();
-        Intent intent=new Intent(MainActivity.this,NumberActivity.class).putExtra("query",quer);
+    Button btn_ok;
+
+    @OnClick(R.id.ok)
+    void okclick() {
+        String quer = searchView.getQuery().toString();
+        Intent intent = new Intent(MainActivity.this, NumberActivity.class).putExtra("query", quer);
         startActivity(intent);
     }
 
@@ -65,14 +69,6 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-//       String quer=  searchView.getQuery().toString();
-//
-//       ok.setOnClickListener(new View.OnClickListener() {
-//           @Override
-//           public void onClick(View v) {
-//               Toast.makeText(getApplicationContext(),"avc "+quer,Toast.LENGTH_SHORT).show();
-//           }
-//       });
 
     }
 
