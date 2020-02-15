@@ -1,4 +1,4 @@
-package com.example.newsviews.Activity;
+package com.example.newsviews.Utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -12,7 +12,7 @@ public class Session {
     int PRIVATE_MODE = 0;
 
     // Shared preferences file name
-    private static final String PREF_NAME = "snow-intro-slider";
+    private static final String PREF_NAME = "majedul";
 
     private static final String IS_FIRST_TIME_LAUNCH = "IsFirstTimeLaunch";
 

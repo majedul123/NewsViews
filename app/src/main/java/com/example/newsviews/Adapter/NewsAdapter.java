@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.newsviews.R;
 import com.squareup.picasso.Picasso;
 
+import butterknife.BindView;
+
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> {
 
@@ -32,6 +34,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
     String[] content;
 
 
+
+
+
+
     public NewsAdapter(Context context, String[] author, String[] title, String[] description, String[] url, String[] url_to_image, String[] published_date, String[] content) {
         this.context = context;
         this.author = author;
@@ -46,7 +52,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnTouchListener {
-
         TextView tv_title, tv_author, tv_description, tv_url, tv_published_date;
 
         ImageView news_image;

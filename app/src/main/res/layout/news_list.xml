@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/title"
-            android:text="Title tiafuiiiiiii aui  ui"
+            android:textColor="#0B53E0"
             android:textSize="16dp"
             android:id="@+id/title"
             android:textStyle="bold" />

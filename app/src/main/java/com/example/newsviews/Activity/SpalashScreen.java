@@ -1,6 +1,7 @@
 package com.example.newsviews.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
@@ -21,21 +22,34 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.newsviews.R;
+import com.example.newsviews.Utils.Session;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 public class SpalashScreen extends AppCompatActivity {
 
-    private ViewPager viewPager;
+
+    @BindView(R.id.view_pager)
+    ViewPager viewPager;
+
     private MyViewPagerAdapter myViewPagerAdapter;
-    private LinearLayout dotsLayout;
+    @BindView(R.id.layoutDots)
+    LinearLayout dotsLayout;
+    @BindView(R.id.btn_skip)
+    Button btnSkip;
+    @BindView(R.id.btn_next)
+    Button btnNext;
+
+
     private TextView[] dots;
     private int[] layouts;
-    private Button btnSkip, btnNext;
     private Session session;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
         session = new Session(this);
         if (!session.isFirstTimeLaunch()) {
@@ -44,18 +58,12 @@ public class SpalashScreen extends AppCompatActivity {
         }
 
 
-
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         }
 
         setContentView(R.layout.activity_spalash_screen);
-
-        viewPager =  findViewById(R.id.view_pager);
-        dotsLayout =findViewById(R.id.layoutDots);
-        btnSkip = findViewById(R.id.btn_skip);
-        btnNext =  findViewById(R.id.btn_next);
-
+        ButterKnife.bind(this);
 
 
         layouts = new int[]{
@@ -123,7 +131,7 @@ public class SpalashScreen extends AppCompatActivity {
         finish();
     }
 
-    private void lunchsecondaryscreen(){
+    private void lunchsecondaryscreen() {
         session.setFirstTimeLaunch(false);
         startActivity(new Intent(SpalashScreen.this, SecondarySpalashScreen.class));
         finish();

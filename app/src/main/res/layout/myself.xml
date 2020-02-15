@@ -5,41 +5,67 @@
     android:background="@drawable/spalash_color"
     android:orientation="vertical">
 
-
-    <TextView
-        android:textColor="#FFF"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-       android:layout_marginTop="100dp"
-        android:text="MD. MAJEDUL ISLAM"
-        android:textAlignment="center"
-        android:textSize="30dp"
-        android:textStyle="bold"
-
-        />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:textColor="#FFF"
-        android:text="B.Sc(Engg.) in ICT from MBSTU"
+        android:layout_marginTop="100dp"
+        android:text="@string/salam"
         android:textAlignment="center"
-        android:textSize="30dp"
-        android:textStyle="bold"
-
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
         android:textColor="#FFF"
-        android:text="Now working as a android developer in sticker driver limited "
-        android:textAlignment="center"
         android:textSize="30dp"
         android:textStyle="bold"
 
         />
 
 
-  </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/name"
+        android:text="@string/name"
+        android:textAlignment="center"
+        android:textColor="#FFF"
+        android:textSize="30dp"
+        android:textStyle="bold"
+
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="@string/degree"
+        android:textAlignment="center"
+        android:textColor="#FFF"
+        android:textSize="30dp"
+        android:textStyle="bold"
+
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="@string/work"
+        android:textAlignment="center"
+        android:textColor="#FFF"
+        android:textSize="30dp"
+        android:textStyle="bold"
+
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="@string/contact"
+        android:textAlignment="center"
+        android:textColor="#FFF"
+        android:textSize="30dp"
+        android:textStyle="bold"
+
+        />
+
+
+</LinearLayout>
 

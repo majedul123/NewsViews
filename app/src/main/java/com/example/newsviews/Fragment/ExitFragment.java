@@ -19,6 +19,7 @@ public class ExitFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_exit, container, false);
 
+        getActivity().finish();
         return root;
     }
 }
