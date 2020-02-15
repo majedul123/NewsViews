@@ -165,12 +165,21 @@ public class HomeFragment extends Fragment {
                                 final View dialogView = inflater.inflate(R.layout.selectview, null);
 
                                 Button yes, no;
+                                ImageButton selct_cross;
+
                                 yes = dialogView.findViewById(R.id.yes);
+                                selct_cross = dialogView.findViewById(R.id.select_cross);
                                 no = dialogView.findViewById(R.id.no);
                                 dialogBuilder.setView(dialogView);
                                 final Dialog markerPopUpDialog = dialogBuilder.create();
                                 markerPopUpDialog.show();
 
+                                selct_cross.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        markerPopUpDialog.dismiss();
+                                    }
+                                });
                                 yes.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
