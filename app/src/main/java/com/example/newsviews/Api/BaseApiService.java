@@ -14,5 +14,8 @@ public interface BaseApiService {
     @Headers("Content-Type: application/json")
     @GET("everything?q=bitcoin&from=?&sortBy=publishedAt&apiKey=019e040aff25434a88d54890bfdc278f")
     Call<ResponseBody> getNews(@Query("from") String from);
+    @Headers("Content-Type: application/json")
+    @GET("{number}")
+    Call<ResponseBody> getNumber(@Path("number") String number);
 
 }

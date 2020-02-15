@@ -1,5 +1,8 @@
 package com.example.newsviews.Api;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -26,6 +29,22 @@ public class RetrofitClient {
                     .client(client)
                     .build();
         }
+        return retrofit;
+    }
+    public static Retrofit getNewClient (String baseUrl){
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+        Gson gson = new GsonBuilder()
+                .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
+                .create();
+        // if (retrofit == null){
+        retrofit = new Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(client)
+                .build();
+        // }
         return retrofit;
     }
 }
