@@ -40,32 +40,36 @@ import retrofit2.Response;
 
 public class NumberFragment extends Fragment {
 
-      BaseApiService mapiservice;
+    BaseApiService mapiservice;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_number, container, false);
-         mapiservice= NewUtilsApi.getAPIService();
+        View view = inflater.inflate(R.layout.fragment_number, container, false);
+        mapiservice = NewUtilsApi.getAPIService();
 
-        Call<ResponseBody> call = mapiservice.getNews("#42");
+        Call<ResponseBody> call1 = mapiservice.getNumber("#42");
+        call1.enqueue(new Callback<ResponseBody>() {
 
-        call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                // Toast.makeText(getApplicationContext(), " campaign id " + campaign_id + "\n driver id :" + Id, Toast.LENGTH_SHORT).show();
+                JSONArray jo2;
+                if (response.isSuccessful()) {
 
-                Toast.makeText(getActivity(),"success",Toast.LENGTH_SHORT).show();
+                     Toast.makeText(getContext(), " success " , Toast.LENGTH_SHORT).show();
+
+                }
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
 
-                Toast.makeText(getActivity(),"fail",Toast.LENGTH_SHORT).show();
+
             }
         });
-
 
 
         return view;
