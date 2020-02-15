@@ -20,10 +20,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.newsviews.Adapter.NewsAdapter;
 import com.example.newsviews.Api.BaseApiService;
@@ -38,6 +40,10 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Date;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -46,8 +52,15 @@ import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
 
+
+    @BindView(R.id.recyclerview)
     RecyclerView recyclerView;
+    @BindView(R.id.webview)
     WebView webView;
+    @BindView(R.id.swipe_layout)
+    SwipeRefreshLayout swipeRefreshLayout;
+
+
     BaseApiService mApiserive;
     String[] author;
     String[] title;
@@ -63,13 +76,31 @@ public class HomeFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        ButterKnife.bind(this, view);
 
+
+        savedata();
+
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                savedata();
+
+            }
+        });
+
+        return view;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void savedata() {
 
         mApiserive = UtilsApi.getAPIService();
 
 
-        recyclerView = view.findViewById(R.id.recyclerview);
-        webView = view.findViewById(R.id.webview);
+        // recyclerView = view.findViewById(R.id.recyclerview);
+        //    webView = view.findViewById(R.id.webview);
 
         Date c = Calendar.getInstance().getTime();
         System.out.println("Current time => " + c);
@@ -132,8 +163,6 @@ public class HomeFragment extends Fragment {
                             public void onClick(View view, final int position) {
 
 
-
-
                                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
                                 LayoutInflater inflater = getActivity().getLayoutInflater();
                                 final View dialogView = inflater.inflate(R.layout.selectview, null);
@@ -163,7 +192,7 @@ public class HomeFragment extends Fragment {
                                                 return true;
                                             }
                                         });
-                                        ImageButton imageButton=dialogViewnew.findViewById(R.id.imagebutton);
+                                        ImageButton imageButton = dialogViewnew.findViewById(R.id.imagebutton);
                                         dialogBuilder.setView(dialogViewnew);
                                         final Dialog markerPopUpDialognew = dialogBuilder.create();
                                         markerPopUpDialognew.show();
@@ -236,8 +265,8 @@ public class HomeFragment extends Fragment {
 
             }
         });
-
-
-        return view;
+        swipeRefreshLayout.setRefreshing(false);
     }
+
+
 }
