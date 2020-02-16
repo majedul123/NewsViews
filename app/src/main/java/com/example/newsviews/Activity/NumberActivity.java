@@ -55,8 +55,8 @@ public class NumberActivity extends AppCompatActivity {
 
                         String abc = jsonobject.getString("text");
                         result.setText(" " + abc);
-                        Toast.makeText(getApplicationContext(), "len :" + len, Toast.LENGTH_SHORT).show();
-                        Toast.makeText(getApplicationContext(), "result :" + abc, Toast.LENGTH_SHORT).show();
+                      //  Toast.makeText(getApplicationContext(), "len :" + len, Toast.LENGTH_SHORT).show();
+                      //  Toast.makeText(getApplicationContext(), "result :" + abc, Toast.LENGTH_SHORT).show();
 
 
                     } catch (JSONException e) {
@@ -65,7 +65,7 @@ public class NumberActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
 
-                    Toast.makeText(getApplicationContext(), " success ", Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(getApplicationContext(), " success ", Toast.LENGTH_SHORT).show();
 
                 }
             }
@@ -73,7 +73,7 @@ public class NumberActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
 
-
+             Toast.makeText(getApplicationContext(),"Failure "+t.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
 
