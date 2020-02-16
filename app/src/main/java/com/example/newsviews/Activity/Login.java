@@ -29,17 +29,16 @@ import com.google.android.gms.common.api.Status;
 
 public class Login extends AppCompatActivity implements
         View.OnClickListener,
-        GoogleApiClient.OnConnectionFailedListener{
-
-
+        GoogleApiClient.OnConnectionFailedListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final int RC_SIGN_IN = 007;
 
     private GoogleApiClient mGoogleApiClient;
+
     private ProgressDialog mProgressDialog;
 
-    private SignInButton btnSignIn;
+    SignInButton btnSignIn;
     private Button btnSignOut, btnRevokeAccess;
     private LinearLayout llProfileLayout;
     private ImageView imgProfilePic;
@@ -49,7 +48,6 @@ public class Login extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
 
         btnSignIn = (SignInButton) findViewById(R.id.btn_sign_in);
         btnSignOut = (Button) findViewById(R.id.btn_sign_out);
@@ -72,13 +70,11 @@ public class Login extends AppCompatActivity implements
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
+
         // Customizing G+ button
         btnSignIn.setSize(SignInButton.SIZE_STANDARD);
         btnSignIn.setScopes(gso.getScopeArray());
-
     }
-
-
 
 
     private void signIn() {
@@ -107,7 +103,6 @@ public class Login extends AppCompatActivity implements
                 });
     }
 
-
     private void handleSignInResult(GoogleSignInResult result) {
         Log.d(TAG, "handleSignInResult:" + result.isSuccess());
         if (result.isSuccess()) {
@@ -121,7 +116,7 @@ public class Login extends AppCompatActivity implements
             String email = acct.getEmail();
 
             Log.e(TAG, "Name: " + personName + ", email: " + email
-                    + ", Image: " + personPhotoUrl);
+                    + ", Image: ");
 
             txtName.setText(personName);
             txtEmail.setText(email);
@@ -131,13 +126,14 @@ public class Login extends AppCompatActivity implements
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(imgProfilePic);
 
-            updateUI(true);
+           // updateUI(true);
+            Intent intent = new Intent(Login.this, MainActivity.class).putExtra("abc", String.valueOf(mGoogleApiClient));
+            startActivity(intent);
         } else {
             // Signed out, show unauthenticated UI.
             updateUI(false);
         }
     }
-
 
     @Override
     public void onClick(View v) {
@@ -205,7 +201,7 @@ public class Login extends AppCompatActivity implements
     private void showProgressDialog() {
         if (mProgressDialog == null) {
             mProgressDialog = new ProgressDialog(this);
-            mProgressDialog.setMessage(getString(R.string.loading));
+            mProgressDialog.setMessage("loading");
             mProgressDialog.setIndeterminate(true);
         }
 
@@ -231,10 +227,4 @@ public class Login extends AppCompatActivity implements
             llProfileLayout.setVisibility(View.GONE);
         }
     }
-
-
-
-
-
-
 }

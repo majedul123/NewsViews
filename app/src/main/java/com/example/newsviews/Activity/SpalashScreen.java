@@ -127,7 +127,7 @@ public class SpalashScreen extends AppCompatActivity {
 
     private void launchHomeScreen() {
         session.setFirstTimeLaunch(false);
-        startActivity(new Intent(SpalashScreen.this, MainActivity.class));
+        startActivity(new Intent(SpalashScreen.this, Login.class));
         finish();
     }
 
