@@ -27,8 +27,12 @@ import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class Login extends AppCompatActivity implements
-        View.OnClickListener,
+
         GoogleApiClient.OnConnectionFailedListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -37,29 +41,50 @@ public class Login extends AppCompatActivity implements
     private GoogleApiClient mGoogleApiClient;
 
     private ProgressDialog mProgressDialog;
-
+    @BindView(R.id.btn_sign_in)
     SignInButton btnSignIn;
-    private Button btnSignOut, btnRevokeAccess;
-    private LinearLayout llProfileLayout;
-    private ImageView imgProfilePic;
-    private TextView txtName, txtEmail;
+    @BindView(R.id.btn_sign_out)
+    Button btnSignOut;
+    @BindView(R.id.btn_revoke_access)
+    Button btnRevokeAccess;
+    @BindView(R.id.llProfile)
+    LinearLayout llProfileLayout;
+    @BindView(R.id.imgProfilePic)
+    ImageView imgProfilePic;
+    @BindView(R.id.txtName)
+    TextView txtName;
+    @BindView(R.id.txtEmail)
+    TextView txtEmail;
+
+    @OnClick(R.id.btn_sign_in) void signinclick(){
+        signIn();
+    }
+    @OnClick(R.id.btn_sign_out) void signoutclick(){
+        signOut();
+    }
+    @OnClick(R.id.btn_revoke_access) void revokeaccessclick(){
+        revokeAccess();
+    }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        ButterKnife.bind(this);
 
-        btnSignIn = (SignInButton) findViewById(R.id.btn_sign_in);
-        btnSignOut = (Button) findViewById(R.id.btn_sign_out);
-        btnRevokeAccess = (Button) findViewById(R.id.btn_revoke_access);
-        llProfileLayout = (LinearLayout) findViewById(R.id.llProfile);
-        imgProfilePic = (ImageView) findViewById(R.id.imgProfilePic);
-        txtName = (TextView) findViewById(R.id.txtName);
-        txtEmail = (TextView) findViewById(R.id.txtEmail);
+//        btnSignIn = (SignInButton) findViewById(R.id.btn_sign_in);
+//        btnSignOut = (Button) findViewById(R.id.btn_sign_out);
+//        btnRevokeAccess = (Button) findViewById(R.id.btn_revoke_access);
+//        llProfileLayout = (LinearLayout) findViewById(R.id.llProfile);
+//        imgProfilePic = (ImageView) findViewById(R.id.imgProfilePic);
+//        txtName = (TextView) findViewById(R.id.txtName);
+//        txtEmail = (TextView) findViewById(R.id.txtEmail);
 
-        btnSignIn.setOnClickListener(this);
-        btnSignOut.setOnClickListener(this);
-        btnRevokeAccess.setOnClickListener(this);
+//        btnSignIn.setOnClickListener(this);
+//        btnSignOut.setOnClickListener(this);
+//        btnRevokeAccess.setOnClickListener(this);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -135,24 +160,24 @@ public class Login extends AppCompatActivity implements
         }
     }
 
-    @Override
-    public void onClick(View v) {
-        int id = v.getId();
-
-        switch (id) {
-            case R.id.btn_sign_in:
-                signIn();
-                break;
-
-            case R.id.btn_sign_out:
-                signOut();
-                break;
-
-            case R.id.btn_revoke_access:
-                revokeAccess();
-                break;
-        }
-    }
+//    @Override
+//    public void onClick(View v) {
+//        int id = v.getId();
+//
+//        switch (id) {
+//            case R.id.btn_sign_in:
+//                signIn();
+//                break;
+//
+//            case R.id.btn_sign_out:
+//                signOut();
+//                break;
+//
+//            case R.id.btn_revoke_access:
+//                revokeAccess();
+//                break;
+//        }
+//    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
