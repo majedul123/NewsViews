@@ -16,6 +16,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -86,6 +87,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onRefresh() {
                 savedata();
+                Toast.makeText(getContext(),"Update Done",Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -105,7 +107,7 @@ public class HomeFragment extends Fragment {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         String currentdate = df.format(c);
 
-        Toast.makeText(getActivity(), "date :" + currentdate, Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(getActivity(), "date :" + currentdate, Toast.LENGTH_SHORT).show();
         String api_key = "019e040aff25434a88d54890bfdc278f";
         Call<ResponseBody> call = mApiserive.getNews(currentdate);
         call.enqueue(new Callback<ResponseBody>() {
@@ -121,7 +123,7 @@ public class HomeFragment extends Fragment {
 
                         jo2 = jsonobject.getJSONArray("articles");
                         int length = jo2.length();
-                        Toast.makeText(getActivity(), "Length =" + length, Toast.LENGTH_SHORT).show();
+                     //   Toast.makeText(getActivity(), "Length =" + length, Toast.LENGTH_SHORT).show();
 
                         author = new String[length];
                         title = new String[length];
@@ -222,7 +224,7 @@ public class HomeFragment extends Fragment {
                                 });
 
 
-                                Toast.makeText(getContext(), "posotion \n" + position, Toast.LENGTH_SHORT).show();
+                            //    Toast.makeText(getContext(), "posotion \n" + position, Toast.LENGTH_SHORT).show();
                             }
 
                             @Override

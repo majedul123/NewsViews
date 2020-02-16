@@ -14,9 +14,9 @@ import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.newsviews.R;
-import com.squareup.picasso.Picasso;
-
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
@@ -107,7 +107,14 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
         holder.tv_author.setText(author[position]);
         holder.tv_description.setText(description[position]);
         holder.tv_url.setText(url[position]);
-        Picasso.with(context).load(url_to_image[position]).into(holder.news_image);
+
+        Glide.with(context).load(url_to_image[position])
+                .thumbnail(0.5f)
+                .crossFade()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(holder.news_image);
+
+
 
         SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
@@ -149,50 +156,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
         NewsAdapter.clickListener = clickListener;
     }
 
-//    public static class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
-//
-//        private GestureDetector gestureDetector;
-//        private NewsAdapter.ClickListener clickListener;
-//
-//        public RecyclerTouchListener(Context context, final RecyclerView recyclerView, final NewsAdapter.ClickListener clickListener) {
-//            this.clickListener = clickListener;
-//            gestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
-//                @Override
-//                public boolean onSingleTapUp(MotionEvent e) {
-//                    return true;
-//                }
-//
-//
-//                @Override
-//                public void onLongPress(MotionEvent e) {
-//                    View child = recyclerView.findChildViewUnder(e.getX(), e.getY());
-//                    if (child != null && clickListener != null) {
-//                        clickListener.onLongClick(child, recyclerView.getChildPosition(child));
-//                    }
-//                }
-//            });
-//        }
-//
-//        @Override
-//        public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-//
-////            View child = rv.findChildViewUnder(e.getX(), e.getY());
-////            if (child != null && clickListener != null && gestureDetector.onTouchEvent(e)) {
-////                clickListener.onClick(child, rv.getChildPosition(child));
-////            }
-//            return false;
-//        }
-//
-//        @Override
-//        public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-//
-//        }
-//
-//        @Override
-//        public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-//
-//        }
-//    }
+
 }
 
 

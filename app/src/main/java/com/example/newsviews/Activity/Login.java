@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -35,6 +36,7 @@ public class Login extends AppCompatActivity implements
 
         GoogleApiClient.OnConnectionFailedListener {
 
+    public static final String PREFS_NAME = "LoginPrefs";
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final int RC_SIGN_IN = 007;
 
@@ -56,16 +58,21 @@ public class Login extends AppCompatActivity implements
     @BindView(R.id.txtEmail)
     TextView txtEmail;
 
-    @OnClick(R.id.btn_sign_in) void signinclick(){
+    @OnClick(R.id.btn_sign_in)
+    void signinclick() {
         signIn();
-    }
-    @OnClick(R.id.btn_sign_out) void signoutclick(){
-        signOut();
-    }
-    @OnClick(R.id.btn_revoke_access) void revokeaccessclick(){
         revokeAccess();
     }
 
+    @OnClick(R.id.btn_sign_out)
+    void signoutclick() {
+        signOut();
+    }
+
+    @OnClick(R.id.btn_revoke_access)
+    void revokeaccessclick() {
+        revokeAccess();
+    }
 
 
     @Override
@@ -74,17 +81,6 @@ public class Login extends AppCompatActivity implements
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
-//        btnSignIn = (SignInButton) findViewById(R.id.btn_sign_in);
-//        btnSignOut = (Button) findViewById(R.id.btn_sign_out);
-//        btnRevokeAccess = (Button) findViewById(R.id.btn_revoke_access);
-//        llProfileLayout = (LinearLayout) findViewById(R.id.llProfile);
-//        imgProfilePic = (ImageView) findViewById(R.id.imgProfilePic);
-//        txtName = (TextView) findViewById(R.id.txtName);
-//        txtEmail = (TextView) findViewById(R.id.txtEmail);
-
-//        btnSignIn.setOnClickListener(this);
-//        btnSignOut.setOnClickListener(this);
-//        btnRevokeAccess.setOnClickListener(this);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -96,7 +92,6 @@ public class Login extends AppCompatActivity implements
                 .build();
 
 
-        // Customizing G+ button
         btnSignIn.setSize(SignInButton.SIZE_STANDARD);
         btnSignIn.setScopes(gso.getScopeArray());
     }
@@ -151,33 +146,25 @@ public class Login extends AppCompatActivity implements
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(imgProfilePic);
 
-           // updateUI(true);
-            Intent intent = new Intent(Login.this, MainActivity.class).putExtra("abc", String.valueOf(mGoogleApiClient));
+            SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putString("logged", "logged");
+            editor.putString("name", personName);
+            editor.putString("email", email);
+            editor.putString("url", personPhotoUrl);
+
+            editor.commit();
+
+            // updateUI(true);
+            Intent intent = new Intent(Login.this, MainActivity.class);
+
             startActivity(intent);
         } else {
-            // Signed out, show unauthenticated UI.
+
             updateUI(false);
         }
     }
 
-//    @Override
-//    public void onClick(View v) {
-//        int id = v.getId();
-//
-//        switch (id) {
-//            case R.id.btn_sign_in:
-//                signIn();
-//                break;
-//
-//            case R.id.btn_sign_out:
-//                signOut();
-//                break;
-//
-//            case R.id.btn_revoke_access:
-//                revokeAccess();
-//                break;
-//        }
-//    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -196,15 +183,12 @@ public class Login extends AppCompatActivity implements
 
         OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(mGoogleApiClient);
         if (opr.isDone()) {
-            // If the user's cached credentials are valid, the OptionalPendingResult will be "done"
-            // and the GoogleSignInResult will be available instantly.
+
             Log.d(TAG, "Got cached sign-in");
             GoogleSignInResult result = opr.get();
             handleSignInResult(result);
         } else {
-            // If the user has not previously signed in on this device or the sign-in has expired,
-            // this asynchronous branch will attempt to sign in the user silently.  Cross-device
-            // single sign-on will occur in this branch.
+
             showProgressDialog();
             opr.setResultCallback(new ResultCallback<GoogleSignInResult>() {
                 @Override
@@ -218,8 +202,7 @@ public class Login extends AppCompatActivity implements
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        // An unresolvable error has occurred and Google APIs (including Sign-In) will not
-        // be available.
+
         Log.d(TAG, "onConnectionFailed:" + connectionResult);
     }
 
