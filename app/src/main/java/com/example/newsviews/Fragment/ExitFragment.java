@@ -1,6 +1,7 @@
 package com.example.newsviews.Fragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,8 @@ import butterknife.OnClick;
 public class ExitFragment extends Fragment {
 
     GoogleApiClient mGoogleApiClient;
+
+    public static final String PREFS_NAME = "LoginPrefs";
     @BindView(R.id.signout)
     Button bt_signout;
 
@@ -55,7 +58,12 @@ public class ExitFragment extends Fragment {
         ButterKnife.bind(this, root);
 
 
-        // getActivity().finish();
+
+        SharedPreferences settings = getActivity().getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.remove("logged");
+        editor.commit();
+
         return root;
     }
 
